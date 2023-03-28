@@ -8,5 +8,8 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
+int printf_hex(unsigned int numarg, int p, int upper);
+int printf_int(va_list args, int p);
+
 
 #endif
