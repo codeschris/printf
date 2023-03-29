@@ -8,46 +8,46 @@
  * Return: printed charcaters
  */
 
-int selector(const char *format, va_list args, int printed)
+int selector(const char *format, va_list args, int p)
 {
 	switch (*format)
 	{
 		case 'd':
 		case 'i':
-			printed = printf_integer(args, printed);
+			p = printf_int(args, p);
 			break;
 		case 'c':
 			_putchar(va_arg(args, int));
-			printed++;
+			p++;
 			break;
 		case 's':
-			printed = printf_string(args, printed);
+			p = printf_str(args, p);
 			break;
 		case '%':
 			_putchar('%');
-			printed++;
+			p++;
 			break;
 		case 'b':
-			printed = printf_binary(va_arg(args, unsigned int), printed);
+			p = printf_binary(va_arg(args, unsigned int), p);
 			break;
 		case 'x':
 		case 'X':
-			printed = _x(va_arg(args, unsigned int), printed, (*format == 'X') ? 1 : 0);
+			p = printf_hex(va_arg(args, unsigned int), p, (*format == 'X') ? 1 : 0);
 			break;
 		case 'o':
-			printed = printf_octal(va_arg(args, unsigned int), printed);
+			p = printf_octal(va_arg(args, unsigned int), p);
 			break;
 		case 'u':
-			printed = printf_unsigned(va_arg(args, unsigned int), printed);
+			p = printf_unsigned(va_arg(args, unsigned int), p);
 			break;
 		case 'r':
-			printed = printf_reverse(args, printed);
+			p = printf_reverse(args, p);
 			break;
 		case 'p':
-			printed = printf_pointer(args, printed);
+			p = printf_ptr(args, p);
 			break;
 		default:
 			break;
 	}
-	return (printed);
+	return (p);
 }
